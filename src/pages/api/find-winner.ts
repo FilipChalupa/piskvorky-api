@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { findWinner } from 'piskvorky'
 
 type Data =
 	| {
-			status: 'ok'
+			winner: ReturnType<typeof findWinner>
 	  }
 	| {
 			error: string
@@ -14,12 +15,15 @@ export default function handler(
 ) {
 	const data = request.body
 
+	// @TODO: handle errors
+	const winner = findWinner(data.board)
+
 	if (data.board) {
 		response.status(200).json({
-			status: 'ok',
+			winner,
 		})
 		return
 	}
 
-	response.status(400).json({ error: 'Unknown request' })
+	response.status(400).json({ error: 'Unknown request.' })
 }
