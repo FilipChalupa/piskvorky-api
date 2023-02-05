@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import NextCors from 'nextjs-cors'
 import { findWinner } from 'piskvorky'
 import { catchError } from '../../../utilities/catchError'
 
@@ -10,10 +11,16 @@ type Data =
 			error: string
 	  }
 
-export default function handler(
+export default async function handler(
 	request: NextApiRequest,
 	response: NextApiResponse<Data>,
 ) {
+	await NextCors(request, response, {
+		methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+		origin: '*',
+		optionsSuccessStatus: 200,
+	})
+
 	const data = request.body
 
 	const winner = catchError(() => findWinner(data.board))
