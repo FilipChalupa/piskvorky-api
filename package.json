@@ -22,6 +22,6 @@
 	},
 	"devDependencies": {
 		"nextjs-cors": "^2.1.2",
-		"piskvorky": "^0.1.0"
+		"piskvorky": "^0.1.2"
 	}
 }
