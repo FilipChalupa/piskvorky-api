@@ -25,7 +25,7 @@ export default async function handler(
 
 	const winner = catchError(() => findWinner(data.board))
 
-	if (winner.result !== null) {
+	if (winner.error === null) {
 		response.status(200).json({
 			winner: winner.result,
 		})

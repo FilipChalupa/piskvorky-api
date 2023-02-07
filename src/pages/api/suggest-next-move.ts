@@ -23,9 +23,9 @@ export default async function handler(
 
 	const data = request.body
 
-	const position = catchError(() => suggestNextMove(data.board))
+	const position = catchError(() => suggestNextMove(data.board, data.player))
 
-	if (position.result !== null) {
+	if (position.error === null) {
 		response.status(200).json({
 			position: position.result,
 		})
