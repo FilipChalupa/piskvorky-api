@@ -49,6 +49,7 @@ const getUser = async (token: string) => {
 		},
 	})
 	if (user !== null) {
+		// @TODO: Check if the token is still valid after a while
 		return user
 	}
 
