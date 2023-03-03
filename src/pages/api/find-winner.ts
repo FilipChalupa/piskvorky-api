@@ -1,8 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import NextCors from 'nextjs-cors';
-import { findWinner } from 'piskvorky';
-import { catchError } from '../../utilities/catchError';
-import { delayIfAnonymousRequest } from '../../utilities/delayIfAnonymousRequest';
+import type { NextApiRequest, NextApiResponse } from 'next'
+import NextCors from 'nextjs-cors'
+import { findWinner } from 'piskvorky'
+import { catchError } from '../../utilities/catchError'
+import { delayIfAnonymousRequest } from '../../utilities/delayIfAnonymousRequest'
 
 type Data =
 	| {
@@ -26,7 +26,7 @@ export default async function handler(
 
 	const winner = catchError(() => findWinner(data.board))
 
-	await delayIfAnonymousRequest(request)
+	await delayIfAnonymousRequest(request, 'findWinnerCount')
 
 	if (winner.error === null) {
 		response.status(200).json({
