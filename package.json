@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@next/font": "13.1.6",
+		"@prisma/client": "^4.11.0",
 		"@types/node": "18.11.18",
 		"@types/react": "18.0.27",
 		"@types/react-dom": "18.0.10",
@@ -22,6 +23,7 @@
 	},
 	"devDependencies": {
 		"nextjs-cors": "^2.1.2",
-		"piskvorky": "^0.1.2"
+		"piskvorky": "^0.1.2",
+		"prisma": "^4.11.0"
 	}
 }

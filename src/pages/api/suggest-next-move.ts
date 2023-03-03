@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import NextCors from 'nextjs-cors'
 import { suggestNextMove } from 'piskvorky'
-import { catchError } from '../../../utilities/catchError'
+import { catchError } from '../../utilities/catchError'
+import { delayIfAnonymousRequest } from '../../utilities/delayIfAnonymousRequest'
 
 type Data =
 	| {
@@ -24,6 +25,8 @@ export default async function handler(
 	const data = request.body
 
 	const position = catchError(() => suggestNextMove(data.board, data.player))
+
+	await delayIfAnonymousRequest(request, 'suggestNextMoveCount')
 
 	if (position.error === null) {
 		response.status(200).json({
