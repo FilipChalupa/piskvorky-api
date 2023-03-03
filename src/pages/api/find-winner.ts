@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import NextCors from 'nextjs-cors'
 import { findWinner } from 'piskvorky'
-import { catchError } from '../../../utilities/catchError'
+import { catchError } from '../../utilities/catchError'
 
 type Data =
 	| {
